@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class User {
@@ -7,6 +9,7 @@ public class User {
     private static final int DIE = 2;
     private String name;
     private Chip chip;
+    private List<Card> cards = new ArrayList<>();
 
     public User(String name) {
         this.name = name;
@@ -35,6 +38,13 @@ public class User {
         return this.chip.equals(chip);
     }
 
+    public void receiveCard(Card card) {
+        if (cards.size() > 2) {
+            throw new IllegalArgumentException("카드는 2장을 초과할 수 없습니다.");
+        }
+        this.cards.add(card);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -47,5 +57,9 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(name, chip);
+    }
+
+    public boolean isMaxCardSize() {
+        return cards.size() == 2;
     }
 }
