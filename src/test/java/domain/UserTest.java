@@ -19,10 +19,10 @@ public class UserTest {
         assertThat(balance).isEqualTo(4000);
     }
 
-    //    @Test
-//    public void batTest() {
-//        User user;
-//        user.bet(1000);
-//
-//    }
+    @Test
+    public void 받은카드_개수가_2개인지() {
+        Dealer dealer = new Dealer();
+        dealer.giveCard(UserFixture.user1);
+        assertThat(UserFixture.user1.isMaxCardSize()).isTrue();
+    }
 }

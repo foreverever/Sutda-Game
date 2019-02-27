@@ -10,4 +10,9 @@ public class InputView {
         String name = scanner.nextLine();
         return name.trim();
     }
+
+    public static int selectGameType(){
+        System.out.println("배팅 종류를 선택해 주세요. (1 : 배팅, 2 : 다이)");
+        return scanner.nextInt();
+    }
 }
