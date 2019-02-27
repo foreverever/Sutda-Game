@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class User {
+    private static final int BEGIN = 0;
     private static final int CALL = 1;
     private static final int DIE = 2;
     private String name;
@@ -15,10 +16,6 @@ public class User {
         this.name = name;
         this.chip = new Chip(10000);
     }
-
-//    public int bet(Chip chip) {
-//        return this.chip.minus(chip);
-//    }
 
     public int bet(int input) {
         if(input == CALL){
