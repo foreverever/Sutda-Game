@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,28 +17,24 @@ public class Dealer {
         this.cards = Card.makeCard();
     }
 
-    public int plus(Chip chip) {
-        return this.chip.plus(chip);
-    }
-
-    public Chip reward(User user) {
-        user.receiveChip(chip);
-        return chip.init();
+    public void plus(Chip chip) {
+        this.chip.plus(chip);
     }
 
     public void cardShuffle() {
         Collections.shuffle(cards);
     }
 
-    public void giveCard(User user) {
-        for (int i = 0; i < cards.size(); i++) {
-            if (!cards.get(i).isUsed()) {
-                if (user.isMaxCardSize()) {
-                    return;
-                }
-                user.receiveCard(cards.get(i));
-                cards.get(i).use();
+    public List<Card> passCard() {
+        List<Card> twoCard = new ArrayList<>();
+        for (Card card : cards) {
+            if(!card.isUsed()){
+                twoCard.add(card);
+                card.use();
+                if(twoCard.size()==2) return twoCard;
             }
         }
+        throw new IllegalArgumentException();
     }
+
 }

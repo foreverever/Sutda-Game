@@ -2,7 +2,7 @@ package domain;
 
 import org.junit.Test;
 
-public class GamePlayTest {
+public class GameTest {
     @Test
     public void 게임() {
 

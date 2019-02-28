@@ -2,8 +2,6 @@ package domain;
 
 import java.util.Objects;
 
-import static domain.GamePlay.dealer;
-
 public class Chip {
     private int amount;
 
@@ -29,7 +27,6 @@ public class Chip {
             throw new IllegalArgumentException("배팅할 칩이 부족합니다.");
         }
         this.amount -= bettingChip.amount;
-        dealer.plus(bettingChip);
         return this.amount;
     }
 
