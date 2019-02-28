@@ -5,9 +5,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class User {
-    private static final int BEGIN = 0;
-    private static final int CALL = 1;
-    private static final int DIE = 2;
     private String name;
     private Chip chip;
     private List<Card> cards = new ArrayList<>();
@@ -17,29 +14,8 @@ public class User {
         this.chip = new Chip(10000);
     }
 
-    public int bet(int input) {
-        if(input == CALL){
-            return this.chip.minus(chip);
-        }
-        if(input == DIE){
-            return 0;
-        }
-        return 0;
-    }
-
-    public void receiveChip(Chip reward) {
-        this.chip.plus(reward);
-    }
-
-    public boolean isSameChip(Chip chip) {
-        return this.chip.equals(chip);
-    }
-
-    public void receiveCard(Card card) {
-        if (cards.size() > 2) {
-            throw new IllegalArgumentException("카드는 2장을 초과할 수 없습니다.");
-        }
-        this.cards.add(card);
+    public void defaultBet(Chip chip) {
+        this.chip.minus(chip);
     }
 
     @Override
@@ -58,5 +34,9 @@ public class User {
 
     public boolean isMaxCardSize() {
         return cards.size() == 2;
+    }
+
+    public void receiveCard(List<Card> passCard) {
+        cards = passCard;
     }
 }
