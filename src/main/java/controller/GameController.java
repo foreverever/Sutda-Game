@@ -18,6 +18,7 @@ public class GameController {
     }
 
     private static void start() {
+        TurnController.turn(user, computer, dealer);
         baseBet();
         divideCard();
 
