@@ -7,6 +7,7 @@ import java.util.Objects;
 public class User {
     private String name;
     private Chip chip;
+    private int status = 0;
     private List<Card> cards = new ArrayList<>();
 
     public User(String name) {
@@ -16,6 +17,10 @@ public class User {
 
     public void defaultBet(Chip chip) {
         this.chip.minus(chip);
+    }
+
+    public int getStatus() {
+        return status;
     }
 
     @Override
@@ -38,5 +43,9 @@ public class User {
 
     public void receiveCard(List<Card> passCard) {
         cards = passCard;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
