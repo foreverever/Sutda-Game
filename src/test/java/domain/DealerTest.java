@@ -3,6 +3,7 @@ package domain;
 import org.junit.Before;
 import org.junit.Test;
 
+import static domain.UserFixture.user1;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DealerTest {
@@ -13,7 +14,14 @@ public class DealerTest {
         dealer = new Dealer();
     }
 
-//    @Test
+    @Test
+    public void 딜러가_유저에게_카드전달() {
+        dealer.passCard(user1);
+        assertThat(user1.getCardSize()).isEqualTo(2);
+        assertThat(user1.isMaxCardSize()).isTrue();
+    }
+
+    //    @Test
 //    public void 딜러_배팅칩_받기() {
 //        assertThat(dealer.plus(new Chip(1000))).isEqualTo(1000);
 //    }
