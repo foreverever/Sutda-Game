@@ -25,16 +25,17 @@ public class Dealer {
         Collections.shuffle(cards);
     }
 
-    public List<Card> passCard() {
+    public void passCard(User user) {
         List<Card> twoCard = new ArrayList<>();
         for (Card card : cards) {
             if(!card.isUsed()){
                 twoCard.add(card);
                 card.use();
-                if(twoCard.size()==2) return twoCard;
+                if(twoCard.size()==2) {
+                    user.receiveCard(twoCard);
+                    return;
+                }
             }
         }
-        throw new IllegalArgumentException();
     }
-
 }
