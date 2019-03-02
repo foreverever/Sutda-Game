@@ -1,23 +1,42 @@
 package controller;
 
-import dto.UserDto;
+import domain.Dealer;
+import domain.User;
 import view.ResultView;
 
-public class TurnController {
-    private static final int MAX_TURN = 5;
+import java.util.Random;
 
-    public static void turn(UserDto userDto, UserDto computerDto) {
+public class TurnController {
+    private static final int MAX_TURN = 7;
+    private static final int USER = 0;
+    private static int currentTurn = 1;
+
+    public static void turn(User user, User computer, Dealer dealer) {
         boolean isNextTurn = true;
+        Random random = new Random();
+        int startUser = random.nextInt(2);
+
 
         while (isNextTurn) {
-            ResultView.showUserPair(userDto.getCards());
-
-            isNextTurn = BettingController.userBet(userDto);
-            if (isNextTurn) {
-                isNextTurn = BettingController.computerBet(computerDto);
-
+            ResultView.showUserPair(user._toUserDto().getCards());
+            if (startUser == USER) {
+                isNextTurn = BettingController.userBet(user, dealer, currentTurn);
+                currentTurn++;
+                if (isNextTurn) {
+                    isNextTurn = BettingController.computerBet(computer, dealer, currentTurn);
+                    currentTurn++;
+                }
+            } else {
+                isNextTurn = BettingController.computerBet(computer, dealer, currentTurn);
+                currentTurn++;
+                if (isNextTurn) {
+                    isNextTurn = BettingController.userBet(computer, dealer, currentTurn);
+                    currentTurn++;
+                }
             }
         }
+
+        WinnerController.check(user, computer, dealer);
     }
 
 //    public static void userTurn(User user, User computer) {

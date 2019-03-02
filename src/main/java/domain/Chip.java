@@ -30,6 +30,12 @@ public class Chip {
         return this.amount;
     }
 
+    public Chip halfChip(Chip chip) {
+        int bettingChip = chip.amount / 2;
+        this.amount -= bettingChip;
+        return new Chip(bettingChip);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -41,5 +47,12 @@ public class Chip {
     @Override
     public int hashCode() {
         return Objects.hash(amount);
+    }
+
+    @Override
+    public String toString() {
+        return "Chip{" +
+                "amount=" + amount +
+                '}';
     }
 }
