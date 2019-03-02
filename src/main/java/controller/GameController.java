@@ -20,7 +20,7 @@ public class GameController {
     private static void start() {
         baseBet();
         divideCard();
-
+        TurnController.turn(user._toUserDto(), computer._toUserDto());
     }
 
     private static void baseBet() {
@@ -33,7 +33,9 @@ public class GameController {
 
     private static void divideCard() {
         dealer.cardShuffle();
-        user.receiveCard(dealer.passCard());
-        computer.receiveCard(dealer.passCard());
+        dealer.passCard(user);
+        dealer.passCard(computer);
+//        user.receiveCard(dealer.passCard());
+//        computer.receiveCard(dealer.passCard());
     }
 }

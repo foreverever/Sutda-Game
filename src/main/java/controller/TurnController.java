@@ -1,23 +1,37 @@
 package controller;
 
-import view.InputView;
+import domain.Card;
+import domain.User;
+import dto.UserDto;
+import view.ResultView;
+
+import java.util.List;
 
 public class TurnController {
     private static final int MAX_TURN = 5;
-    
-    public static void userTurn(){
-        BettingController.bet()
 
-        int battingType = InputView.selectGameType();
-        if(battingType==1){
-            //다이
+    public static void turn(UserDto userDto, UserDto computerDto) {
+        boolean isNextTurn = true;
+
+        while (isNextTurn) {
+            ResultView.showUserPair(userDto.getCards());
+
+            isNextTurn = BettingController.userBet(userDto);
+            if (isNextTurn) {
+                isNextTurn = BettingController.computerBet(computerDto);
+            }
         }
-        if(battingType==2){
-            //콜
-        }
-        if(battingType==3){
-            computerTurn();
-        }
-        //...
     }
+
+//    public static void userTurn(User user, User computer) {
+//        boolean isContinue = BettingController.bet(user);
+//        if (!isContinue) WinnerController.award();
+//        computerTurn();
+//    }
+//
+//    private static void computerTurn(User user, User computer) {
+//        boolean isContinue = BettingController.bet(computer);
+//        if (!isContinue) WinnerController.award();
+//        userTurn();
+//    }
 }

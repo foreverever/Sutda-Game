@@ -1,5 +1,7 @@
 package domain;
 
+import dto.UserDto;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -36,7 +38,15 @@ public class User {
         return cards.size() == 2;
     }
 
+    public int getCardSize(){
+        return cards.size();
+    }
+
     public void receiveCard(List<Card> passCard) {
         cards = passCard;
+    }
+
+    public UserDto _toUserDto(){
+        return new UserDto(name, cards, chip);
     }
 }
