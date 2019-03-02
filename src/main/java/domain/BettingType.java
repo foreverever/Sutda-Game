@@ -1,7 +1,7 @@
 package domain;
 
 public enum BettingType {
-    DIE(1), CALL(2), HALF(3), DOUBLE(4), QUARTER(5), BBING(6);
+    DIE(1), CALL(2), DOUBLE(3), QUARTER(4), HALF(5);
 
     private int type;
 

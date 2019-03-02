@@ -18,17 +18,17 @@ public class GameController {
     }
 
     private static void start() {
+        baseBet(); // 기본급 배팅
+        divideCard(); // 카드 배급
+        createGenealogy();
         TurnController.turn(user, computer, dealer);
-        baseBet();
-        divideCard();
-        TurnController.turn(user._toUserDto(), computer._toUserDto());
     }
 
     private static void baseBet() {
         Chip baseChip = new Chip(100);
-        user.defaultBet(baseChip);
+        user.bet(baseChip);
         dealer.plus(baseChip);
-        computer.defaultBet(baseChip);
+        computer.bet(baseChip);
         dealer.plus(baseChip);
     }
 

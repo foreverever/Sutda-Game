@@ -33,4 +33,8 @@ public enum Card {
     public boolean isUsed() {
         return used;
     }
+
+    public boolean isSame(Card other) {
+        return this.month == other.month;
+    }
 }
