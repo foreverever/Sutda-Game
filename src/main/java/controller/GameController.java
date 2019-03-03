@@ -1,42 +1,32 @@
 package controller;
 
-import domain.Chip;
-import domain.Dealer;
-import domain.User;
+import domain.Game;
+import dto.GameDto;
 import view.InputView;
+import view.ResultView;
 
 public class GameController {
-    private static User user;
-    private static User computer;
-    private static Dealer dealer;
+    private static final int MAX_TURN = 7;
+    private static final int USER = 0;
 
     public static void run() {
-        user = new User(InputView.name());
-        computer = new User("컴퓨터");
-        dealer = new Dealer();
-        start();
-    }
+        Game game = new Game(InputView.name());
+        boolean isContinueGame = true;
 
-    private static void start() {
-        baseBet(); // 기본급 배팅
-        divideCard(); // 카드 배급
-        createGenealogy();
-        TurnController.turn(user, computer, dealer);
-    }
+        while (isContinueGame) {
+            boolean isNextTurn = true;
+            int currentTurn = 1;
 
-    private static void baseBet() {
-        Chip baseChip = new Chip(100);
-        user.bet(baseChip);
-        dealer.plus(baseChip);
-        computer.bet(baseChip);
-        dealer.plus(baseChip);
-    }
+            game.ready();   //게임 준비
+            GameDto gameDto = game._toGameDto();
 
-    private static void divideCard() {
-        dealer.cardShuffle();
-        dealer.passCard(user);
-        dealer.passCard(computer);
-//        user.receiveCard(dealer.passCard());
-//        computer.receiveCard(dealer.passCard());
+            //턴 시작
+            while(isNextTurn){
+                ResultView.showUserPair(gameDto.getUser()._toUserDto().getCards());
+                isNextTurn = game.oneTurn(currentTurn);
+                currentTurn++;
+            }
+            isContinueGame = InputView.isRestartGame();     //리게임 할지 묻기
+        }
     }
 }
