@@ -19,10 +19,10 @@ public enum Genealogy {
         this.name = name;
     }
 
-    public void TTang(Card card1, Card card2) {
-        if (card1.isSame(card2)) {
-            this.rank = ;
-            this.name =
-        }
-    }
+//    public void TTang(Card card1, Card card2) {
+//        if (card1.isSame(card2)) {
+//            this.rank = ;
+//            this.name =
+//        }
+//    }
 }
