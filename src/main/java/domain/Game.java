@@ -1,6 +1,9 @@
 package domain;
 
 import dto.GameDto;
+import dto.UserDto;
+
+import java.util.List;
 
 public class Game {
     private static User user;
@@ -17,8 +20,15 @@ public class Game {
     }
 
     public void ready() {
+        initBetting(user, computer);
         baseBet(); // 기본급 배팅
         divideCard(); // 카드 배급
+
+    }
+
+    private void initBetting(User user, User computer) {
+        user.initBetting();
+        computer.initBetting();
     }
 
     private void baseBet() {
@@ -39,11 +49,11 @@ public class Game {
         // 카드 회수 추가 필요(card used = false)
     }
 
-    public User winner() {
+    public List<User> winner() {
         // 족보 비교
-        User winUser =  Genealogy.winner(user, computer);
-        dealer.passAward(winUser);
-        return  winUser;
+        List<User> users = Genealogy.winner(user, computer);
+        dealer.passAward(users.get(0));
+        return users;
     }
 
     public GameDto _toGameDto() {
