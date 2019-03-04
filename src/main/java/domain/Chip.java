@@ -23,15 +23,27 @@ public class Chip {
     }
 
     public int minus(Chip bettingChip) {
-        if (this.amount < bettingChip.amount) {
-            throw new IllegalArgumentException("배팅할 칩이 부족합니다.");
-        }
+//        if (this.amount < bettingChip.amount) {
+//            throw new IllegalArgumentException("배팅할 칩이 부족합니다.");
+//        }
         this.amount -= bettingChip.amount;
         return this.amount;
     }
 
-    public Chip halfChip(Chip chip) {
-        int bettingChip = chip.amount / 2;
+    public Chip halfChip(Chip dealerChip) {
+        int bettingChip = dealerChip.amount / 2;
+        this.amount -= bettingChip;
+        return new Chip(bettingChip);
+    }
+
+    public Chip quarterChip(Chip dealerChip) {
+        int bettingChip = dealerChip.amount / 4;
+        this.amount -= bettingChip;
+        return new Chip(bettingChip);
+    }
+
+    public Chip doubleChip(Chip prePlayerChip) {
+        int bettingChip = prePlayerChip.amount * 2;
         this.amount -= bettingChip;
         return new Chip(bettingChip);
     }

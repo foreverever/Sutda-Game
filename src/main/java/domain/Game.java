@@ -23,9 +23,12 @@ public class Game {
 
     private void baseBet() {
         Chip baseChip = new Chip(100);
+        bettingChip(baseChip, user);
+        bettingChip(baseChip, computer);
+    }
+
+    private void bettingChip(Chip baseChip, User user) {
         user.bet(baseChip);
-        dealer.plus(baseChip);
-        computer.bet(baseChip);
         dealer.plus(baseChip);
     }
 
@@ -33,39 +36,15 @@ public class Game {
         dealer.cardShuffle();
         dealer.passCard(user);
         dealer.passCard(computer);
-        //카드 회수 추가 필요(card used = false)
+        // 카드 회수 추가 필요(card used = false)
     }
 
-//    public boolean oneTurn(int currentTurn) {
-//        if (currentTurn == 1) {
-//            return firstTurn(currentTurn);
-//        }
-//        return nextTurn(currentTurn);
-//    }
-//
-//    private boolean firstTurn(int currentTurn) {
-//        Random random = new Random();   //최초 턴 사용자 결정 (유저 or 컴퓨터 중 랜덤)
-//        startUser = random.nextInt(2);
-//        if (startUser == 0) {
-//            return turn.userTurn(user, dealer, currentTurn);
-//        }
-//        return turn.computerTurn(computer, dealer, currentTurn);
-//    }
-//
-//    private boolean nextTurn(int currentTurn) {
-//        if (startUser == 0) {
-//            if (currentTurn % 2 != 0) {
-//                return turn.userTurn(user, dealer, currentTurn);
-//            }
-//            return turn.computerTurn(computer, dealer, currentTurn);
-//        }
-//
-//        if (currentTurn % 2 != 0) {
-//            return turn.computerTurn(computer, dealer, currentTurn);
-//
-//        }
-//        return turn.userTurn(user, dealer, currentTurn);
-//    }
+    public User winner() {
+        // 족보 비교
+        User winUser =  Genealogy.winner(user, computer);
+        dealer.passAward(winUser);
+        return  winUser;
+    }
 
     public GameDto _toGameDto() {
         return new GameDto(user, computer, dealer, turn);

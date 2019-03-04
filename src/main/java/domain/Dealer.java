@@ -41,6 +41,11 @@ public class Dealer {
         }
     }
 
+    public void passAward(User winUser) {
+        winUser.receiveAward(chip);
+        this.chip.init();
+    }
+
     public DealerDto _toDealerDto() {
         return new DealerDto(chip, cards);
     }
