@@ -7,6 +7,7 @@ import dto.GameDto;
 import view.InputView;
 import view.ResultView;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class GameController {
@@ -27,6 +28,10 @@ public class GameController {
             //턴 시작
             while (isNextTurn) {
                 ResultView.showUserPair(userCards);
+                System.out.println("------------------------------------------------");
+                System.out.println("나의 턴");
+                System.out.println("------------------------------------------------");
+
                 if (currentTurn == 1) {
                     isNextTurn = game.userTurn(currentTurn, InputView.selectDefaultGameType());
                     currentTurn++;
@@ -42,8 +47,10 @@ public class GameController {
             }
 
             // 게임 결과
-            User winUser = game.winner();
-            ResultView.showWinner(winUser._toUserDto().getName());
+            List<User> users = game.winner();
+            System.out.println("win : " +  users.get(0).toString());
+            System.out.println("lost : " +  users.get(1).toString());
+            ResultView.showWinner(users.get(0)._toUserDto(), users.get(1)._toUserDto());
 
             // 돈 없으면 게임 중단 추가
             isContinueGame = InputView.isRestartGame();  // 리게임 할지 묻기

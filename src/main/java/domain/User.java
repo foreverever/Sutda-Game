@@ -11,6 +11,7 @@ public class User {
     private Chip chip;
     private Chip bettedChip;
     private List<Card> cards = new ArrayList<>();
+    private String genealogy = "";
 
     public User(String name) {
         this.name = name;
@@ -36,7 +37,7 @@ public class User {
     }
 
     public Chip doubleBet(Chip prePlayerChip) {
-        Chip bettingChip = this.chip.doubleChip(chip);
+        Chip bettingChip = this.chip.doubleChip(prePlayerChip);
         bettedChip.plus(bettingChip);
         return bettingChip;
     }
@@ -67,7 +68,15 @@ public class User {
     }
 
     public UserDto _toUserDto() {
-        return new UserDto(name, cards, chip);
+        return new UserDto(name, cards, chip, genealogy);
+    }
+
+    public void setGenealogy(String genealogy) {
+        this.genealogy = genealogy;
+    }
+
+    public String getGenealogy() {
+        return genealogy;
     }
 
     @Override
@@ -82,5 +91,20 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(name, chip);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", chip=" + chip +
+                ", bettedChip=" + bettedChip +
+                ", cards=" + cards +
+                ", genealogy='" + genealogy + '\'' +
+                '}';
+    }
+
+    public void initBetting() {
+        this.bettedChip = new Chip(0);
     }
 }
