@@ -9,13 +9,12 @@ import static domain.BettingType.HALF;
 
 public class Betting {
 
-    public boolean userBet(User user, Dealer dealer, int currentTurn) {
-        int bettingType;
-        if (currentTurn == 1) {
-            bettingType = InputView.selectDefaultGameType();
-        } else {
-            bettingType = InputView.selectGameType();
-        }
+    public boolean userBet(User user, Dealer dealer, int currentTurn, int bettingType) {
+//        if (currentTurn == 1) {
+//            bettingType = InputView.selectDefaultGameType();    //도메인 로직 과정에서 입력을 받을 경우에는 도대체 어떻게 해야함?? 도메인에서 뷰단을 가져오면 안되잖아.. 시발
+//        } else {
+//            bettingType = InputView.selectGameType();
+//        }
 
         BettingType type = BettingType.findType(bettingType);
         while (true) {
@@ -32,13 +31,13 @@ public class Betting {
                 return true;
             }
             if (type == HALF) {
-                System.out.println("딜러 돈 : " + dealer._toDealerDto().getChip().toString());
+//                System.out.println("딜러 돈 : " + dealer._toDealerDto().getChip().toString());
                 Chip userChip = user.half(dealer._toDealerDto().getChip());
-                System.out.println("유저 가 투자한 돈" + userChip.toString());
+//                System.out.println("유저 가 투자한 돈" + userChip.toString());
                 dealer.plus(userChip);
-                System.out.println("딜러 돈 : " + dealer._toDealerDto().getChip().toString());
-                System.out.println(dealer.toString());
-                System.out.println("------------------------------------------");
+//                System.out.println("딜러 돈 : " + dealer._toDealerDto().getChip().toString());
+//                System.out.println(dealer.toString());
+//                System.out.println("------------------------------------------");
 
                 return true;
             }
@@ -70,13 +69,13 @@ public class Betting {
                 return true;
             }
             if (type == HALF) {
-                System.out.println("딜러 돈 : " + dealer._toDealerDto().getChip().toString());
+//                System.out.println("딜러 돈 : " + dealer._toDealerDto().getChip().toString());
                 Chip computerChip = computer.half(dealer._toDealerDto().getChip());
-                System.out.println("컴터가 투자한 돈" + computerChip.toString());
+//                System.out.println("컴터가 투자한 돈" + computerChip.toString());
                 dealer.plus(computerChip);
-                System.out.println("딜러 돈 : " + dealer._toDealerDto().getChip().toString());
-                System.out.println(dealer.toString());
-                System.out.println("------------------------------------------");
+//                System.out.println("딜러 돈 : " + dealer._toDealerDto().getChip().toString());
+//                System.out.println(dealer.toString());
+//                System.out.println("------------------------------------------");
                 return true;
             }
         }

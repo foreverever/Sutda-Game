@@ -15,37 +15,39 @@ public class Turn {
         this.betting = new Betting();
     }
 
-    public void startTurn(User user, User computer, Dealer dealer) {
-        boolean isNextTurn = true;
-        Random random = new Random();
-        int startUser = random.nextInt(2);
-
-        while (isNextTurn) {
-            if (startUser == USER) {
-                isNextTurn = betting.userBet(user, dealer, currentTurn);
-                currentTurn++;
-                if (isNextTurn) {
-                    isNextTurn = betting.computerBet(computer, dealer, currentTurn);
-                    currentTurn++;
-                }
-            } else {
-                isNextTurn = betting.computerBet(computer, dealer, currentTurn);
-                currentTurn++;
-                if (isNextTurn) {
-                    isNextTurn = betting.userBet(computer, dealer, currentTurn);
-                    currentTurn++;
-                }
-            }
-        }
-
-        WinnerController.check(user, computer, dealer);
-    }
-
-    public boolean userTurn(User user, Dealer dealer, int currentTurn) {
-        return betting.userBet(user, dealer, currentTurn);
+    public boolean userTurn(User user, Dealer dealer, int currentTurn, int bettingType) {
+        return betting.userBet(user, dealer, currentTurn, bettingType);
     }
 
     public boolean computerTurn(User computer, Dealer dealer, int currentTurn) {
         return betting.computerBet(computer,dealer,currentTurn);
     }
+
+//    public void startTurn(User user, User computer, Dealer dealer) {
+//        boolean isNextTurn = true;
+//        Random random = new Random();
+//        int startUser = random.nextInt(2);
+//
+//        while (isNextTurn) {
+//            if (startUser == USER) {
+//                isNextTurn = betting.userBet(user, dealer, currentTurn);
+//                currentTurn++;
+//                if (isNextTurn) {
+//                    isNextTurn = betting.computerBet(computer, dealer, currentTurn);
+//                    currentTurn++;
+//                }
+//            } else {
+//                isNextTurn = betting.computerBet(computer, dealer, currentTurn);
+//                currentTurn++;
+//                if (isNextTurn) {
+//                    isNextTurn = betting.userBet(computer, dealer, currentTurn);
+//                    currentTurn++;
+//                }
+//            }
+//        }
+//
+//        WinnerController.check(user, computer, dealer);
+//    }
+
+
 }

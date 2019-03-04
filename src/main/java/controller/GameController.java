@@ -21,11 +21,19 @@ public class GameController {
             GameDto gameDto = game._toGameDto();
 
             //턴 시작
-            while(isNextTurn){
+            while (isNextTurn) {
                 ResultView.showUserPair(gameDto.getUser()._toUserDto().getCards());
-                isNextTurn = game.oneTurn(currentTurn);
+                isNextTurn = game.userTurn(currentTurn, InputView.selectGameType());
                 currentTurn++;
+
+                if (isNextTurn) {
+                    isNextTurn = game.computerTurn(currentTurn);
+                    currentTurn++;
+                }
             }
+            //돈 없으면 게임 중단 추가
+
+
             isContinueGame = InputView.isRestartGame();     //리게임 할지 묻기
         }
     }
