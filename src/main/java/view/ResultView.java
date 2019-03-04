@@ -12,4 +12,8 @@ public class ResultView {
         }
         System.out.println();
     }
+
+    public static void showWinner(String name) {
+        System.out.println("우승자는 " + name + "입니다!!");
+    }
 }
