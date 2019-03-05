@@ -56,7 +56,9 @@ public enum Genealogy {
         this.name = name;
     }
 
+    //list의 0번째가 우승자이다.
     public static List<User> winner(User player, User computer) {
+        // TODO : winner가 누군지 알 수가 없다. User 나 Game에 있는게 낫다. Enum에 있는건 적합하지않음
         List<User> users = new ArrayList<>();
 
         Genealogy userGenealogy = findType(player);

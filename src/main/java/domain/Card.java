@@ -13,9 +13,8 @@ public enum Card {
     private int month;
     private boolean used;
 
-    Card(int month){
-        this.month = month;
-        this.used = false;
+    Card(int i) {
+
     }
 
     public static List<Card> makeCard(){
@@ -25,7 +24,7 @@ public enum Card {
         }
         return cards;
     }
-
+// TODO : Enum(상수)에서 상태값을 바꾸면 안됨
     public void use() {
         this.used = true;
     }
