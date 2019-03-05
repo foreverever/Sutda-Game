@@ -5,6 +5,7 @@ import domain.Turn;
 import domain.User;
 
 public class GameDto {
+    // TODO : 인스턴스 변수를 도메인으로 받지말고 DTO로 받아라.
     private User user;
     private User computer;
     private Dealer dealer;
